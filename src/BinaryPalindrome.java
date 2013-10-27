@@ -33,7 +33,7 @@ class BinaryPalindrome{
     if(cache.containsKey(word)){
       if(cache.get(word)) return true;
       else return false;
-    } else{
+    } else {
       //StringBuilder sb = new StringBuilder(word).reverse();
       /* if(sb.toString().equals(word)){ */
       if(isPalin(word)){
