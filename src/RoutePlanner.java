@@ -34,8 +34,8 @@ class RoutePlanner{
     }
   }
 
-  public static Corner[] corners = new Corner[26];
-  public static ArrayList<String> paths = new ArrayList<String>();
+  private static Corner[] corners = new Corner[26];
+  private static ArrayList<String> paths = new ArrayList<String>();
 
   public static void main (String[] args) {
     String[] corners_str = {"A","B","C", "D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
@@ -60,16 +60,15 @@ class RoutePlanner{
     else doShananigans();
   }
 
-  public static void doShananigans(){
+  private static void doShananigans(){
     int total = paths.size();
     int minLen = paths.get(0).length();
     String minStr = paths.get(0);
-    for (int i = 0; i < paths.size(); i++) {
-      int currLen = paths.get(i).length();
-      String currStr = paths.get(i);
+    for (String path: paths) {
+      int currLen = path.length();
       if (currLen < minLen){
         minLen = currLen;
-        minStr = currStr;
+        minStr = path;
       }
     }
 
@@ -88,13 +87,13 @@ class RoutePlanner{
     System.out.printf("Shortest Route after Sorting of Routes of length %d: %s\n", minLen,  minStr2.trim());
   }
 
-  public static void findPaths(Corner source, Corner target){
+  private static void findPaths(Corner source, Corner target){
     Stack<Corner> visitedCorners = new Stack<Corner>();
     visitedCorners.push(source);
     findSimplePaths(visitedCorners, target);
   }
 
-  public static void findSimplePaths(Stack<Corner> visited, Corner target){
+  private static void findSimplePaths(Stack<Corner> visited, Corner target){
     Corner lastVisited = visited.peek();
 
     // explore all adjacent roads
@@ -107,7 +106,7 @@ class RoutePlanner{
         Object[] temp = visited.toArray();
 
         StringBuilder sb = new StringBuilder("");
-        for(int i = 0; i < temp.length; i++) sb.append(((Corner)temp[i]).name);
+        for(Object o: temp) sb.append(((Corner)o).name);
 
         paths.add(sb.toString());
         visited.pop();
