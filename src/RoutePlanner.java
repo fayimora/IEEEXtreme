@@ -9,7 +9,7 @@ class RoutePlanner{
 
   private static class Corner{
     String name;
-    public ArrayList<Road> adjacencies = new ArrayList<Road>();
+    public ArrayList<Road> neighbours = new ArrayList<Road>();
     public Corner(String name){
       this.name = name;
     }
@@ -49,8 +49,8 @@ class RoutePlanner{
       int f = strs[0].charAt(0) - 'A';
       int t = strs[1].charAt(0) - 'A';
       if(f == 0 && t==0) break;
-      corners[f].adjacencies.add(new Road(corners[f], corners[t]));
-      corners[t].adjacencies.add(new Road(corners[t], corners[f]));
+      corners[f].neighbours.add(new Road(corners[f], corners[t]));
+      corners[t].neighbours.add(new Road(corners[t], corners[f]));
     }
     Corner source = corners[5]; // starts at F
     Corner target = corners[destination - 'A'];
@@ -97,7 +97,7 @@ class RoutePlanner{
     Corner lastVisited = visited.peek();
 
     // explore all adjacent roads
-    ArrayList<Road> roads = corners[lastVisited.toString().charAt(0) - 'A'].adjacencies;
+    ArrayList<Road> roads = corners[lastVisited.toString().charAt(0) - 'A'].neighbours;
     for(Road road: roads){
       Corner linkedCorner = lastVisited == road.from ? road.to : road.from;
       if(visited.contains(linkedCorner)) continue;
