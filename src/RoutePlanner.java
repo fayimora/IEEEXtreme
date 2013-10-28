@@ -91,10 +91,10 @@ class RoutePlanner{
   public static void findPaths(Corner source, Corner target){
     Stack<Corner> visitedCorners = new Stack<Corner>();
     visitedCorners.push(source);
-    findSimplePaths(visitedCorners, target, paths);
+    findSimplePaths(visitedCorners, target);
   }
 
-  public static void findSimplePaths(Stack<Corner> visited, Corner target, ArrayList<String> paths){
+  public static void findSimplePaths(Stack<Corner> visited, Corner target){
     Corner lastVisited = visited.peek();
 
     // explore all adjacent roads
@@ -113,7 +113,7 @@ class RoutePlanner{
         visited.pop();
       }
       visited.push(linkedCorner);
-      findSimplePaths(visited, target, paths);
+      findSimplePaths(visited, target);
       visited.pop();
     }
 
