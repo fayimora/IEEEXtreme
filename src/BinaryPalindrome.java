@@ -35,7 +35,7 @@ class BinaryPalindrome{
       else return false;
     } else {
       //StringBuilder sb = new StringBuilder(word).reverse();
-      /* if(sb.toString().equals(word)){ */
+      //if(sb.toString().equals(word)){
       if(isPalin(word)){
         cache.put(word, true);
         return true;
@@ -57,7 +57,7 @@ class BinaryPalindrome{
       return false;
     } else {
       String sub = word.substring(1, word.length()-1);
-      boolean b =  isPalin(sub);
+      boolean b = isPalin(sub);
       if(b) cache.put(sub, true);
       else cache.put(sub, false);
       return b;
